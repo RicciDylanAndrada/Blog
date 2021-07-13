@@ -16,9 +16,11 @@ app.use(express.static("public"));
 
 
 app.get("/",function(req,res){
-  res.render("home")
+  res.render("home",{homeContent:homeStartingContent})
 });
+app.post("/",function(req,res){
 
+})
 
 app.listen(3000,function(req,res){
   console.log("Listening");
