@@ -1,6 +1,7 @@
 //jshint esversion:6
 
 const express = require("express");
+const _ =require("lodash");
 const bodyParser = require("body-parser");
 const ejs = require("ejs")
 var posts = [];
@@ -23,6 +24,25 @@ app.get("/",function(req,res){
 app.post("/",function(req,res){
 
 });
+app.get('/posts/:posts',function(req,res){
+  const postPage = _.lowerCase(req.params.posts);
+
+  posts.forEach(function(post){
+    let inPost = (post);
+    if ((postPage) === (_.lowerCase(inPost.title))){
+      console.log("Match Found");
+      res.render("post",{postContent:inPost})
+
+    }
+    else{console.log("not");}
+  });
+
+
+  })
+
+
+app.get("/posts",function(req,res){
+})
 
 app.get("/about",function(req,res){
   res.render("about",{aboutContent:aboutContent})
